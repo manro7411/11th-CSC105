@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import {
+    Card, CardImg, CardText, CardBody,
+    CardTitle, Breadcrumb, BreadcrumbItem
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
+
 
 class DishDetail extends Component {
     renderDish() {
@@ -9,8 +14,8 @@ class DishDetail extends Component {
                 <Card>
                     <CardImg top src={dish.image} alt={dish.name} />
                     <CardBody>
-                      <CardTitle>{dish.name}</CardTitle>
-                      <CardText>{dish.description}</CardText>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
                     </CardBody>
                 </Card>
             );
@@ -18,8 +23,8 @@ class DishDetail extends Component {
 
     renderComments() {
         const dish = this.props.dishes[this.props.selectedDish];
-        const comments = this.props.comments.filter( comment => comment.dishId === dish.id );
-        if(dish != null)
+        const comments = this.props.comments.filter(comment => comment.dishId === dish.id);
+        if (dish != null)
             return (
                 <Card>
                     <CardTitle>
@@ -33,10 +38,10 @@ class DishDetail extends Component {
                                         {comment.comment}
                                         <br />
                                         {"--" + comment.author + ", "}
-                                        {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
+                                        {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(comment.date)))}
                                     </li>
                                 );
-                                }
+                            }
                             )}
                         </ul>
                     </CardBody>
